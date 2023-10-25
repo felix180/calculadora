@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.test.calculadora.request.OperacionEnum;
+import com.test.calculadora.exception.ControllerExceptionHandler;import com.test.calculadora.request.OperacionEnum;
 import com.test.calculadora.request.ValueRequest;
 import com.test.calculadora.service.CalculadoraService;
 import java.math.BigDecimal;
@@ -27,6 +27,8 @@ class CalculadoraControllerTest {
   @Autowired private MockMvc mvc;
 
   @MockBean private CalculadoraService calculadoraService;
+
+  @MockBean private ControllerExceptionHandler controllerExceptionHandler;
 
   @Test
   void calcularSinOperadorError() throws Exception {
@@ -50,7 +52,7 @@ class CalculadoraControllerTest {
 
     this.mvc
         .perform(
-            get("/api/calculadora?operacion=Sumar")
+            get("/api/calculadora?operacion=SUMAR")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
         .andExpect(status().isOk())

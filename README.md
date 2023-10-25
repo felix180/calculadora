@@ -11,8 +11,10 @@
 2. Clonar el repositorio
 3. Navegar a la carpeta del proyecto
 4. Ejecutar el siguiente comando:
+* mvn clean (Se necesita para que genera los archivos en maven de la lib trace)
 * mvn install
 * mvn spring-boot:run
+
 
 Ejemplo:
 
@@ -30,7 +32,7 @@ Este proyecto proporciona los siguientes requests:
     * valores: SUMAR,RESTAR
     
   * JsonBody: array values
-    * ejemplo: "values": ["1","2"]
+    * ejemplo: { "values": ["1","2"] }
 
 
 ## Estructura
@@ -45,3 +47,6 @@ Este proyecto proporciona los siguientes requests:
     * Resta :lista (-1,2,3) : -(-1) - 2 - 3 = -4 
 * Se aplica un patron de estrategia donde dependiendo del Enum Operation, se genera una accion para el calcular que 
 va estar implementada aparte (Como mejora el metodo getOperation podria estar en un clase abstracta y tener esa fucnionalidad fuera del servicio)
+
+* Se agrega la liberia Trace que se encarga de logear los resultados exitos y los errores cuando suceden dentro del proyecto
+ * Como mejoras se deberia crear un objeto resultado que tenga el parametro de exitoso y tenga informacion relevando para el trace que funciona como auditoria
