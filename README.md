@@ -32,7 +32,7 @@ Este proyecto proporciona los siguientes requests:
     * valores: SUMAR,RESTAR
     
   * JsonBody: array values
-    * ejemplo: "values": ["1","2"]
+    * ejemplo: { "values": ["1","2"] }
 
 
 ## Estructura
