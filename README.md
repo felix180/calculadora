@@ -31,11 +31,14 @@ mvn spring-boot:run -Dserver.port=8080
 
 Este proyecto proporciona los siguientes requests:
 
-* **GET /api/calculadora**
+* **POST /api/calculadora**
  
   * JsonBody: operacion y array values
     * ejemplo: { "operacion":"SUMAR", values": ["1","2"] }
-
+    
+* * **GET /api/calculadora/operaciones**
+  * Se crea para retonar los valores de las operaciones implementadas
+    * resultado : {"operaciones": ["string"]}
 
 ## Estructura
 * Controller donde estaran los servicios rest expuestos
@@ -52,3 +55,6 @@ va estar implementada aparte (Como mejora el metodo getOperation podria estar en
 
 * Se agrega la liberia Trace que se encarga de logear los resultados exitos y los errores cuando suceden dentro del proyecto
  * Como mejoras se deberia crear un objeto resultado que tenga el parametro de exitoso y tenga informacion relevando para el trace que funciona como auditoria
+
+* Se crea una clase para cargar todas las implementaciones de Operacion en OperacionInit y filtra la implentacion con un string del ValueRequest.Se elimina el Enum ya que se toma directamente de las implementaciones interna.
+
