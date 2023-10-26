@@ -23,16 +23,18 @@ Para ejecutar el proyecto en el puerto 8080, ejecute el siguiente comando:
 mvn spring-boot:run -Dserver.port=8080
 
 ## Requests
+* **Swagger** 
+  Se usa el componente springdoc y OpenAPI 3.0
+  * Se agrega un swagger para tu facil consumo de las api para acceder a ellas puedes consumir con la siquiente url:
+    * yaml: http://localhost:8080/v3/api-docs
+    * version visual : http://localhost:8080/swagger-ui/index.html
 
 Este proyecto proporciona los siguientes requests:
 
 * **GET /api/calculadora**
  
-  * QueryParam: operacion
-    * valores: SUMAR,RESTAR
-    
-  * JsonBody: array values
-    * ejemplo: { "values": ["1","2"] }
+  * JsonBody: operacion y array values
+    * ejemplo: { "operacion":"SUMAR", values": ["1","2"] }
 
 
 ## Estructura

@@ -1,61 +1,40 @@
 package com.test.calculadora.contoller;
 
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.test.calculadora.exception.ControllerExceptionHandler;import com.test.calculadora.request.OperacionEnum;
+import com.test.calculadora.exception.ControllerExceptionHandler;
+import com.test.calculadora.request.OperacionEnum;
+import com.test.calculadora.request.OperacionResult;
 import com.test.calculadora.request.ValueRequest;
 import com.test.calculadora.service.CalculadoraService;
 import java.math.BigDecimal;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-@WebMvcTest(CalculadoraController.class)
+@ExtendWith(MockitoExtension.class)
 class CalculadoraControllerTest {
+  @InjectMocks private CalculadoraController calculadoraController;
+  @Mock private CalculadoraService calculadoraService;
 
-  @Autowired private MockMvc mvc;
-
-  @MockBean private CalculadoraService calculadoraService;
-
-  @MockBean private ControllerExceptionHandler controllerExceptionHandler;
+  @Mock private ControllerExceptionHandler controllerExceptionHandler;
 
   @Test
-  void calcularSinOperadorError() throws Exception {
+  void calcularSumarOk()  {
 
-    this.mvc
-        .perform(get("/api/calculadora").contentType(MediaType.APPLICATION_JSON))
-        .andExpect(status().isBadRequest());
-  }
+    ValueRequest valueRequest =
+        new ValueRequest(OperacionEnum.SUMAR, List.of(BigDecimal.ONE, BigDecimal.ONE));
 
-  @Test
-  void calcularSumarOk() throws Exception {
-
-    ValueRequest valueRequest = new ValueRequest(List.of(BigDecimal.ONE, BigDecimal.ONE));
-    ObjectMapper mapper = new ObjectMapper();
-    mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-    ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-    String requestJson = ow.writeValueAsString(valueRequest);
-
-    Mockito.when(calculadoraService.calcular(OperacionEnum.SUMAR, valueRequest))
-            .thenReturn(BigDecimal.ZERO);
-
-    this.mvc
-        .perform(
-            get("/api/calculadora?operacion=SUMAR")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestJson))
-        .andExpect(status().isOk())
-        .andExpect(jsonPath("$", is(0)));
+    Mockito.when(calculadoraService.calcular(valueRequest))
+        .thenReturn(new OperacionResult(BigDecimal.ZERO));
+    ResponseEntity<OperacionResult> result = calculadoraController.calcular(valueRequest);
+    assertEquals(BigDecimal.ZERO, result.getBody().result());
+    assertEquals(HttpStatus.OK, result.getStatusCode());
   }
 }

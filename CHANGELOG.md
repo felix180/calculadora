@@ -20,3 +20,12 @@
     * Se agrega los archivos jar en una carpeta lib en la raiz del proyecto
   * Se añade ControllerExceptionHandler para gestiona el control de excepciones y mostrar un mensaje o codigo personalizado si deseas tambien para llamar el trace
   * Se añade TracerLog para crear una sola instancia de TracerImpl y ser usado en todo el poryecto
+
+[POC-03]
+* 1-
+  * Se cambia el metodo del controller como post y se agregar operacion en el body del json 
+  * Se elimina los test que levantan el spring y solo se deja los test unitarios basicos solo con mockito
+  * Se crea un objeto de resultado OperacionResult donde esta la data a devolver
+* 2- 
+  * Se agrega un nueva dependencia springdoc-openapi-starter-webmvc-ui que genera un yaml o muestra visualmente la api que ayuda para documentarlo
+  
