@@ -2,7 +2,7 @@ package com.test.calculadora.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.test.calculadora.request.ValueRequest;
+import com.test.calculadora.request.OperacionEnum;import com.test.calculadora.request.ValueRequest;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ class RestarTest {
   void calcularResta() {
 
     ValueRequest valueRequest =
-        new ValueRequest(List.of(new BigDecimal("5.0"), new BigDecimal("10.0")));
+        new ValueRequest(OperacionEnum.RESTAR,List.of(new BigDecimal("5.0"), new BigDecimal("10.0")));
 
     BigDecimal result = operacionRestar.calcular(valueRequest);
 
@@ -25,7 +25,7 @@ class RestarTest {
   @Test
   void calcularZeroResta() {
 
-    ValueRequest valueRequest = new ValueRequest(new ArrayList<>());
+    ValueRequest valueRequest = new ValueRequest(OperacionEnum.RESTAR,new ArrayList<>());
 
     BigDecimal result = operacionRestar.calcular(valueRequest);
 
@@ -34,7 +34,8 @@ class RestarTest {
 
   @Test
   void calcularNullValueResta() {
-    ValueRequest valueRequest = new ValueRequest(null);
+    ValueRequest valueRequest = new ValueRequest(null,null
+    );
     assertThrows(IllegalArgumentException.class, () -> operacionRestar.calcular(valueRequest));
   }
 }

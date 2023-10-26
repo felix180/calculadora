@@ -28,11 +28,8 @@ Este proyecto proporciona los siguientes requests:
 
 * **GET /api/calculadora**
  
-  * QueryParam: operacion
-    * valores: SUMAR,RESTAR
-    
-  * JsonBody: array values
-    * ejemplo: { "values": ["1","2"] }
+  * JsonBody: operacion y array values
+    * ejemplo: { "operacion":"SUMAR", values": ["1","2"] }
 
 
 ## Estructura
