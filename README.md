@@ -42,7 +42,9 @@ Este proyecto proporciona los siguientes requests:
 
 ## Estructura
 * Controller donde estaran los servicios rest expuestos
-* Service la logica de negocio operaciones  
+* Service la logica de negocio operaciones
+* Config archivos necesario al iniciar el proyecto
+* Exception paquete encargado de el controll de error o modelo del mismo
 
 ## Solucion
 * Se creo un objeto ValuesRequest para el posible evolutivo de no ser solo 2 numeros para las operaciones

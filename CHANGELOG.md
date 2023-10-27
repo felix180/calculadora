@@ -8,6 +8,10 @@
   * Se cambia en ValueRequest el tipo operacion para String antes era el Enum
   * Se elimina getOperacion de CalculadoraService
 
+* 2-
+  * Se agregar mas validaciones en el ControllerExceptionHandler y se extiende de ResponseEntityExceptionHandler para facil implementacion de los posibles errores a controllar
+  
+
 ## 0.1.0
 [POC-03]
 * 1-
