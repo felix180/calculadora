@@ -1,5 +1,6 @@
 package com.test.calculadora.contoller;
 
+import com.test.calculadora.request.OperacionList;
 import com.test.calculadora.request.OperacionResult;
 import com.test.calculadora.request.ValueRequest;
 import com.test.calculadora.service.CalculadoraService;
@@ -34,9 +35,25 @@ public class CalculadoraController {
         @ApiResponse(
             responseCode = "400",
             description = "Bad Request",
-                content = @Content(schema = @Schema(implementation = ProblemDetail.class)))
+            content = @Content(schema = @Schema(implementation = ProblemDetail.class)))
       })
   public ResponseEntity<OperacionResult> calcular(@RequestBody ValueRequest valueRequest) {
     return ResponseEntity.ok(this.calculadoraService.calcular(valueRequest));
+  }
+
+  @GetMapping(path = "/operaciones")
+  @Operation(
+      summary = "Devuelve la lista de operaciones",
+      responses = {
+        @ApiResponse(
+            description = "Successful Operation",
+            responseCode = "200",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = OperacionList.class)))
+      })
+  public ResponseEntity<OperacionList> getOperaciones() {
+    return ResponseEntity.ok(this.calculadoraService.getOperaciones());
   }
 }
