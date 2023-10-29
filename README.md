@@ -49,9 +49,9 @@ Este proyecto proporciona los siguientes requests:
 ## Solucion
 * Se creo un objeto ValuesRequest para el posible evolutivo de no ser solo 2 numeros para las operaciones
   * Cambia la logia ya al tener varios numeros se suman secuencialmente o restan tomando el signo del valor por ejemplo  sera igual 
-    * Sumar :lista (2,3,2) : 2+2+3 =7 
-    * Sumar :lista (-1,2,3) : (-1)+ 2+3 = 4
-    * Resta :lista (-1,2,3) : -(-1) - 2 - 3 = -4 
+    * Sumar :lista (2,3,2) : 2 + 2 + 3 = 7 
+    * Sumar :lista (-1,2,3) : (-1) + 2 + 3 = 4
+    * Resta :lista (-1,2,3) : (-1) - 2 - 3 = -6 
 * Se aplica un patron de estrategia donde dependiendo del Enum Operation, se genera una accion para el calcular que 
 va estar implementada aparte (Como mejora el metodo getOperation podria estar en un clase abstracta y tener esa fucnionalidad fuera del servicio)
 
@@ -60,3 +60,4 @@ va estar implementada aparte (Como mejora el metodo getOperation podria estar en
 
 * Se crea una clase para cargar todas las implementaciones de Operacion en OperacionInit y filtra la implentacion con un string del ValueRequest.Se elimina el Enum ya que se toma directamente de las implementaciones interna.
 
+* Se cambia la logica de sumar y restar sin cambiar el signo del primer numero que anteriormente comenzaba la restar desde base "0".

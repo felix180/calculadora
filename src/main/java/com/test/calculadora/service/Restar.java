@@ -1,8 +1,8 @@
 package com.test.calculadora.service;
 
 import com.test.calculadora.request.ValueRequest;
-import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
+import org.springframework.stereotype.Component;
 
 @Component("RESTAR")
 public class Restar implements Operacion {
@@ -10,7 +10,7 @@ public class Restar implements Operacion {
   public BigDecimal calcular(ValueRequest valueRequest) {
 
     try {
-      return valueRequest.values().stream().reduce(BigDecimal.ZERO, BigDecimal::subtract);
+      return valueRequest.values().stream().reduce(BigDecimal::subtract).orElse(BigDecimal.ZERO);
     } catch (Exception exception) {
       throw new IllegalArgumentException("Error en restar valores: " + valueRequest, exception);
     }

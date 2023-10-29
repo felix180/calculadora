@@ -38,7 +38,7 @@ class CalculadoraServiceImplTest {
     Mockito.when(operacionInit.getOperacion("RESTAR")).thenReturn(new Restar());
 
     BigDecimal result = calculadoraService.calcular(valueRequest).result();
-    assertEquals(new BigDecimal("2.0"), result);
+    assertEquals(new BigDecimal("-6.0"), result);
   }
 
   @Test
