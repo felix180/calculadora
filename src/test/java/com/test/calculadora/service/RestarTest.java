@@ -19,7 +19,18 @@ class RestarTest {
 
     BigDecimal result = operacionRestar.calcular(valueRequest);
 
-    assertEquals(new BigDecimal("-15.0"), result);
+    assertEquals(new BigDecimal("-5.0"), result);
+  }
+
+  @Test
+  void calcularRestaNegativo() {
+
+    ValueRequest valueRequest =
+            new ValueRequest("RESTAR",List.of(new BigDecimal("-1.0"), new BigDecimal("2.0"), new BigDecimal("3.0")));
+
+    BigDecimal result = operacionRestar.calcular(valueRequest);
+
+    assertEquals(new BigDecimal("-6.0"), result);
   }
 
   @Test

@@ -10,10 +10,9 @@ public class Sumar implements Operacion {
   public BigDecimal calcular(ValueRequest valueRequest) {
 
     try {
-      return valueRequest.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-
+      return valueRequest.values().stream().reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
     } catch (Exception exception) {
-      throw new IllegalArgumentException("Error en restar valores: " + valueRequest, exception);
+      throw new IllegalArgumentException("Error en sumar valores: " + valueRequest, exception);
     }
   }
 }

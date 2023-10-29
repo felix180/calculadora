@@ -25,6 +25,15 @@ class SumarTest {
   }
 
   @Test
+  void calcularSumaNegativo() {
+
+    ValueRequest valueRequest =
+            new ValueRequest("SUMAR",List.of(new BigDecimal("-1.0"), new BigDecimal("2.0"),new BigDecimal("3.0")));
+    BigDecimal result = operacion.calcular(valueRequest);
+    assertEquals(new BigDecimal("4.0"), result);
+  }
+
+  @Test
   void calcularZero() {
 
     ValueRequest valueRequest = new ValueRequest("SUMAR",new ArrayList<>());

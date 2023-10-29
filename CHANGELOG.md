@@ -10,7 +10,10 @@
 
 * 2-
   * Se agregar mas validaciones en el ControllerExceptionHandler y se extiende de ResponseEntityExceptionHandler para facil implementacion de los posibles errores a controllar
-  
+
+* 3-
+  * Se cambia la logica que de sumar y restar que comenzaba de base cero que para el restar funcionaba extraño al ingresar valores negativos,se crea test despues del cambio
+
 
 ## 0.1.0
 [POC-03]
